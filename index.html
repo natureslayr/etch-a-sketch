@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "UTF-8">
+    <style>
+      
+      #container {
+        width: 960px;
+        height: 960px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #grid {
+        max-width: 60 px;
+        max-height: 60 px;
+        margin:0;
+	      padding:0;
+	      border:none;
+	      outline:1px solid #000;
+        flex-basis: 60px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id = "container"></div>
+    <script>
+
+      const container = document.querySelector("#container");
+    
+      function createGrid(x) {
+        for (var rows = 0; rows < x; rows++) {
+          for (var columns = 0; columns < x; columns++) {
+            let grid = document.createElement("div");
+            container.appendChild(grid);
+            grid.setAttribute("id", "grid");
+
+          };
+        };
+      };
+      
+      createGrid(16);
+      
+    </script>
+  </body>
+</html>
