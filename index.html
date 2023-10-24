@@ -5,6 +5,7 @@
     <style>
       
       #container {
+        margin: 0;
         width: 960px;
         height: 960px;
         display: flex;
@@ -12,8 +13,6 @@
       }
 
       #grid {
-        max-width: 60 px;
-        max-height: 60 px;
         margin:0;
 	      padding:0;
 	      border:none;
@@ -24,24 +23,48 @@
     </style>
   </head>
   <body>
+    <button>Change Grid Size</button>
     <div id = "container"></div>
     <script>
 
-      const container = document.querySelector("#container");
-    
+      let container = document.querySelector("#container");
+      let inputGridSize = 16;
+      const gridButton = document.querySelector("button");
+
+      gridButton.addEventListener("click", alertFunction);
+
+      function alertFunction() {
+        inputGridSize = prompt("Enter Grid Size", 16);
+        empty(container);
+        createGrid(inputGridSize);
+      }
+      
       function createGrid(x) {
         for (var rows = 0; rows < x; rows++) {
           for (var columns = 0; columns < x; columns++) {
             let grid = document.createElement("div");
             container.appendChild(grid);
             grid.setAttribute("id", "grid");
-
+            grid.style.flexBasis = `${960/inputGridSize}px`
           };
         };
+
+      const gridCube = document.querySelectorAll("#grid");
+        gridCube.forEach((gridCube) => {
+          gridCube.addEventListener("mouseenter", (e) => {
+            e.target.style.backgroundColor = "black";
+          });
+        });
       };
+
+      function empty(element) {
+        while(element.firstElementChild) {
+          element.firstElementChild.remove();
+        }
+      }
       
-      createGrid(16);
-      
+      createGrid(inputGridSize);
+
     </script>
   </body>
 </html>
